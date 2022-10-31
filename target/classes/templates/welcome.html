@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Bienvenido</title>
+</head>
+<body>
+<div class=" col-lg-12 flex-row bd-highlight mb-3 align-items-center pt-4 pb-3 mb-3 border-bottom gap-3 ">
+    <main>
+        <div class="align-items-center flex-row bd-highlight mb-3 pt-4 pb-3 mb-3 border-bottom">
+            <div >
+                <button type="button" class="btn btn-outline-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
+                <h1 class="d-flex justify-content-center flex-row bd-highlight mb-3 flex-md-nowrap align-items-center pt-4 pb-3 mb-3 border-bottom gap-3 h2">Bienvenido</h1>
+            </div>
+
+            <div class="d-flex justify-content-center border-top-0 mx-auto gap-3 ">
+                <h4 >Seleccione el Area a donde Desea Dirigirse</h4>
+            </div>
+            <div class="d-flex justify-content-center mx-auto gap-3">
+                <a href="/enterprises" class="btn btn-outline-primary px-4 gap-3">Empresas</a>
+                <a href="/employee" class="btn btn-outline-primary px-4 gap-3">Empleados</a>
+                <a href="/movements" class="btn btn-outline-primary px-4 gap-3">Movimientos</a>
+
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

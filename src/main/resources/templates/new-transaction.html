@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crear Movimiento</title>
+</head>
+<body>
+<div class="d-flex col-10">
+    <main class="col-md-2 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-3 border-bottom">
+            <h1 class="h2">Crear Movimiento</h1>
+            <a href="/logout" class="btn btn-outline-danger px-4 gap-3">Cerrar Sesion</a>
+        </div>
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/enterprises">Empresas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/movements">Movimientos</a>
+                </li>
+            </ul>
+        </div>
+        <form th:action="@{/transaction/{id}(id=${transaction.id})}" method="post" th:object="${transaction}">
+            <div class="">
+                <label for="amount">Monto :</label>
+                <input id="amount" type="number" name="amount" th:field="*{amount}" placeholder="Digite Monto: ">
+            </div>
+            <div class="">
+                <label for="concept">Concepto:</label>
+                <input id="concept" type="text" name="concept" th:field="*{concept}" placeholder="Digite concepto: ">
+            </div>
+            <div class="">
+                <label class="w-full font-bold my-2">Empleado:</label>
+                <select th:field="*{employee.id}" placeholder="Creado Por: ">
+                    <option th:each="employee : ${employees}" th:text="${employee.name}" th:value="${employee.id}" ></option>
+                </select>
+            </div>
+
+            <div class="my-2">
+                <button type="submit" class="btn btn-outline-dark focus:outline-none rounded">
+                    Crear Transaccion
+                </button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

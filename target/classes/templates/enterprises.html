@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Empresas</title>
+</head>
+<body>
+<div class="d-flex col-lg-12">
+    <main class="col-md-1 ms-sm-auto col-lg-12 px-md-2 ">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-3 border-bottom">
+            <h1 class="h2">Empresas</h1>
+            <a href="/logout" class="btn btn-outline-danger px-4 gap-3">Cerrar Sesion</a>
+        </div>
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/movements">Movimientos</a>
+                </li>
+            </ul>
+            <div class="d-flex justify-content-end align-items-center pt-3 pb-2 mb-3">
+                <a href="/enterprises/crear" class="btn btn-outline-primary px-4 gap-3"> Crear Empresa</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">NIT</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Empleados</th>
+                    <th scope="col" class= "text-align-center">Acciones</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr th:each="enterprise: ${enterprises}">
+                    <td th:text = "${enterprise.id}"></td>
+                    <td th:text="${enterprise.name}"></td>
+                    <td th:text="${enterprise.NIT}"></td>
+                    <td th:text="${enterprise.phone}"></td>
+                    <td th:text="${enterprise.address}"></td>
+                    <td>
+                        <div>
+                            <a th:href="@{/enterprises/{id}/employees(id=${enterprise.id})}" class="btn btn-outline-info px-4 gap-3 btn-sm font-bold rounded">Empleados</a>
+
+                        </div>
+                    </td>
+
+                    <td>
+                        <div>
+                            <a th:href="@{/enterprises/movements/{id}(id=${enterprise.id})}" class="btn btn-outline-info px-4 gap-3 btn-sm font-bold rounded">Movimientos</a>
+                            <a th:href="@{/enterprises/editar/{id}(id=${enterprise.id})}" class="btn btn-outline-info px-4 gap-3 btn-sm rounded">Editar</a>
+                            <a th:href="@{/enterprises/borrar/{id}(id=${enterprise.id})}" class="btn btn-outline-danger px-4 gap-3 btn-sm font-bold rounded">Eliminar</a>
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Section-Employees</title>
+</head>
+<body>
+
+<div class="d-flex col-lg-12 ">
+    <main class="col-md-1 ms-sm-auto col-lg-12 px-md-2">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-3 ">
+            <h1 class="h2">Empleados</h1>
+            <a href="/logout" class="btn btn-outline-danger px-4 gap-3">Cerrar Sesion</a>
+        </div>
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/enterprises">Empresas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/movements">Movimientos</a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-end align-items-center pt-3 pb-2 mb-3">
+            <a href="/employee/crear" class="btn btn-outline-primary px-4 gap-3"> Nuevo Usuario</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Empleado</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col" class="text-align-center">Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employee : ${listEmployee}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.name}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:if="${employee.role=='ROLE_ADMIN'}">Administrativo</td>
+                    <td th:if="${employee.role=='ROLE_USER'}">Operativo</td>
+                    <td th:text="${employee.enterprise.name}"></td>
+                    <td>
+                        <div>
+                            <a class="btn btn btn-outline-info px-4 gap-3 btn-sm " th:href="@{/employee/editar/{id}(id=${employee.id})}">Editar</a>
+                            <a class=" btn btn-outline-danger px-4 gap-3 btn-sm font-bold" th:href="@{/employee/delete/{id}(id=${employee.id})}">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

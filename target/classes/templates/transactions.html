@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>MOVIMIENTOS</title>
+</head>
+<body>
+<div class="d-flex col-lg-12 ">
+    <main class="col-md-1 ms-sm-auto col-lg-12 px-md-2">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-3 border-bottom">
+            <h1 class="h2">Movimientos</h1>
+            <button type="button" class="btn btn-outline-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
+        </div>
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/enterprises">Empresas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee">Empleados</a>
+                </li>
+            </ul>
+
+            <div class="row">
+                <div>
+                <a href="/transaction/crear" class="btn btn-outline-primary btn-sm px-4 gap-3 float-right" > Crear Movimiento</a>
+                </div>
+                <br></br>
+                <div class="form-group col-md-12">
+
+                    <label class="col-md-3" for="SumaMontos">Total Movimientos:</label>
+                    <div class="col-md-2">
+                        <p th:text="${#numbers.formatCurrency(total)}" class="form-control" id="SumaMontos"></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center pt-3 pb-2 mb-3">
+
+
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Empleado</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col" class= "text-align-center">Acciones</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr th:each="transaction: ${movements}">
+                    <td th:text="${transaction.id}"></td>
+                    <td th:text="${transaction.concept}"></td>
+                    <td th:text="${transaction.amount}"></td>
+                    <td th:text="${transaction.employee.name}"></td>
+                    <td th:text="${transaction.employee.enterprise.name}"></td>
+                    <td>
+                        <div>
+                            <a th:href="@{/transaction/editar/{id}(id=${transaction.id})}" class="btn btn-outline-info px-4 gap-3 btn-sm rounded">Editar</a>
+                            <a th:href="@{/enterprises/borrar/{id}(id=${transaction.id})}" class="btn btn-outline-danger px-4 gap-3 btn-sm font-bold rounded">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>
